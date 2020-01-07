@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="65d9109d-8c5f-4c81-b266-c8ac410e5c85" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/clustering_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/clustering_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/lat_lang_geohash.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/lat_lang_geohash.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/src/clustering_helper.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="305" column="29" lean-forward="true" selection-start-line="305" selection-start-column="29" selection-end-line="305" selection-end-column="29" />
+            <state relative-caret-position="262">
+              <caret line="266" column="72" selection-start-line="266" selection-start-column="72" selection-end-line="266" selection-end-column="72" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -202,8 +199,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/clustering_helper.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="305" column="29" lean-forward="true" selection-start-line="305" selection-start-column="29" selection-end-line="305" selection-end-column="29" />
+        <state relative-caret-position="262">
+          <caret line="266" column="72" selection-start-line="266" selection-start-column="72" selection-end-line="266" selection-end-column="72" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
