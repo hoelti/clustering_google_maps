@@ -1,6 +1,7 @@
-import 'dart:typed_data';
 import 'dart:async';
+import 'dart:typed_data';
 import 'dart:ui' as ui;
+
 import 'package:clustering_google_maps/src/aggregated_points.dart';
 import 'package:clustering_google_maps/src/aggregation_setup.dart';
 import 'package:clustering_google_maps/src/db_helper.dart';
@@ -80,11 +81,14 @@ class ClusteringHelper {
   //List of points for memory clustering
   List<LatLngAndGeohash> list;
 
+  bool markerSelected = false;
+
   //Call during the editing of CameraPosition
   //If you want updateMap during the zoom in/out set forceUpdate to true
   //this is NOT RECCOMENDED
   onCameraMove(CameraPosition position, {forceUpdate = false}) {
     _currentZoom = position.zoom;
+    markerSelected = false;
     if (forceUpdate) {
       updateMap();
     }
@@ -92,7 +96,10 @@ class ClusteringHelper {
 
   //Call when user stop to move or zoom the map
   Future<void> onMapIdle() async {
-    updateMap();
+    //Todo: no update if marker clicked
+    if (!markerSelected) {
+      updateMap();
+    }
   }
 
   updateMap() {
@@ -287,9 +294,10 @@ class ClusteringHelper {
         return Marker(
           markerId: markerId,
           position: p.location,
-          infoWindow: InfoWindow(
-              title:
-                  "${p.location.latitude.toStringAsFixed(2)},${p.location.longitude.toStringAsFixed(2)}"),
+          onTap: () {
+            markerSelected = true;
+          },
+          infoWindow: p.infoWindow,
           icon: bitmapAssetPathForSingleMarker != null
               ? BitmapDescriptor.fromAsset(bitmapAssetPathForSingleMarker)
               : BitmapDescriptor.defaultMarker,
