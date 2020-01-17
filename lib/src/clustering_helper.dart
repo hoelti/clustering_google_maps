@@ -13,6 +13,8 @@ import 'package:meta/meta.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ClusteringHelper {
+  bool keepInfoWindow = false;
+
   ClusteringHelper.forDB({
     @required this.dbTable,
     @required this.dbLatColumn,
@@ -87,11 +89,22 @@ class ClusteringHelper {
   //If you want updateMap during the zoom in/out set forceUpdate to true
   //this is NOT RECCOMENDED
   onCameraMove(CameraPosition position, {forceUpdate = false}) {
-    _currentZoom = position.zoom;
-    markerSelected = false;
-    if (forceUpdate) {
-      updateMap();
+    if (keepInfoWindow) {
+    } else {
+      _currentZoom = position.zoom;
+      markerSelected = false;
+      if (forceUpdate) {
+        updateMap();
+      }
     }
+    switchInfoWindow();
+  }
+
+  switchInfoWindow() {
+    //todo: camera state nutzen
+    Future.delayed(Duration(seconds: 10)).then((res) {
+      keepInfoWindow = false;
+    });
   }
 
   //Call when user stop to move or zoom the map
@@ -256,19 +269,43 @@ class ClusteringHelper {
             await getBytesFromCanvas(a.count.toString(), getColor(a.count));
         bitmapDescriptor = BitmapDescriptor.fromBytes(markerIcon);
       }
-      final MarkerId markerId = MarkerId(a.getId());
 
-      final marker = Marker(
-        markerId: markerId,
-        position: a.location,
+      if (a.count != 1) {
+        final MarkerId markerId = MarkerId(a.getId());
+
+        final marker = Marker(
+          markerId: markerId,
+          position: a.location,
 //        infoWindow: InfoWindow(title: a.count.toString()),
-        infoWindow: InfoWindow(
-            title:
-                'Reinzoomen um Infos über ${a.count.toString()} Gewässer zu erhalten'),
-        icon: bitmapDescriptor,
-      );
+          infoWindow: InfoWindow(
+              title:
+                  'Reinzoomen um Infos über ${a.count.toString()} Gewässer zu erhalten'),
+          icon: bitmapDescriptor,
+        );
 
-      markers.add(marker);
+        markers.add(marker);
+      } else {
+        final LatLng markerLatLng = a.getLatLng();
+
+        LatLngAndGeohash point = list.firstWhere((item) =>
+            item.location.latitude == markerLatLng.latitude &&
+            item.location.longitude == markerLatLng.longitude);
+
+        final marker = Marker(
+          markerId: MarkerId(point.getId()),
+          position: a.location,
+          onTap: () {
+            markerSelected = true;
+            keepInfoWindow = true;
+          },
+
+//        infoWindow: InfoWindow(title: a.count.toString()),
+          infoWindow: point.infoWindow,
+          icon: bitmapDescriptor,
+        );
+
+        markers.add(marker);
+      }
     }
     updateMarkers(markers);
   }

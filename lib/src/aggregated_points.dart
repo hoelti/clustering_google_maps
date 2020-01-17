@@ -49,4 +49,8 @@ class AggregatedPoints {
         location.longitude.toString() +
         "_$count";
   }
+
+  getLatLng() {
+    return LatLng(location.latitude, location.longitude);
+  }
 }
