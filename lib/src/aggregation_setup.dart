@@ -33,8 +33,8 @@ class AggregationSetup {
       14.5,
     ],
     this.markerSize = 150,
-  })  : assert(maxAggregationItems.length == 6),
+  })  : // assert(maxAggregationItems.length == 6),
         assert(colors.length == 7),
-        assert(maxZoomLimits.length == 7),
+        //assert(maxZoomLimits.length == 7),
         assert(markerSize > 0);
 }

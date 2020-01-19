@@ -121,6 +121,8 @@ class ClusteringHelper {
     } else {
       if (showSinglePoint != null) {
         showSinglePoint();
+        markerSelected = true;
+        keepInfoWindow = true;
       } else {
         updatePoints(_currentZoom);
       }
@@ -335,6 +337,7 @@ class ClusteringHelper {
           markerId: markerId,
           position: p.location,
           onTap: () {
+            keepInfoWindow = true;
             markerSelected = true;
           },
           infoWindow: p.infoWindow,
