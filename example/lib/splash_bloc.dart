@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:clustering_google_maps/clustering_google_maps.dart';
 import 'package:example/app_db.dart';
 import 'package:example/fake_point.dart';
@@ -16,8 +17,9 @@ class SplashBloc {
       for (int i = 0; i < fakeList.length; i++) {
         final fakePoint = fakeList[i];
         final p = LatLngAndGeohash(
-          LatLng(fakePoint["LATITUDE"], fakePoint["LONGITUDE"]),
-        );
+            LatLng(fakePoint["LATITUDE"], fakePoint["LONGITUDE"]),
+            InfoWindow(),
+            'test');
         myPoints.add(p);
       }
       print("EXTRACT COMPLETE");
