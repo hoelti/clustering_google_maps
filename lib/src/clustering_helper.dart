@@ -281,7 +281,10 @@ class ClusteringHelper {
 //        infoWindow: InfoWindow(title: a.count.toString()),
           infoWindow: InfoWindow(
               title:
-                  'Reinzoomen um Infos über ${a.count.toString()} Gewässer zu erhalten'),
+                  'Reinzoomen um Infos über ${a.count.toString()} Gewässer zu erhalten',
+              onTap: () {
+                // todo: reinzoomen
+              }),
           icon: bitmapDescriptor,
         );
 
