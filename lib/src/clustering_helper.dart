@@ -138,7 +138,7 @@ class ClusteringHelper {
 
   Future<List<AggregatedPoints>> getAggregatedPoints(double zoom) async {
     assert(() {
-      print("loading aggregation");
+      // print("loading aggregation");
       return true;
     }());
 
@@ -199,7 +199,7 @@ class ClusteringHelper {
       return aggregatedPoints;
     } catch (e) {
       assert(() {
-        print(e.toString());
+        // print(e.toString());
         return true;
       }());
       return List<AggregatedPoints>();
@@ -213,7 +213,7 @@ class ClusteringHelper {
       List<AggregatedPoints> resultList,
       int level) {
     assert(() {
-      print("input list lenght: " + inputList.length.toString());
+      // print("input list lenght: " + inputList.length.toString());
       return true;
     }());
 
@@ -243,7 +243,7 @@ class ClusteringHelper {
     List<AggregatedPoints> aggregation = await getAggregatedPoints(zoom);
 
     assert(() {
-      print("aggregation lenght: " + aggregation.length.toString());
+      // print("aggregation lenght: " + aggregation.length.toString());
       return true;
     }());
 
@@ -252,7 +252,7 @@ class ClusteringHelper {
     for (var i = 0; i < aggregation.length; i++) {
       final a = aggregation[i];
       assert(() {
-        print(a.count);
+        // print(a.count);
         return true;
       }());
 
@@ -317,7 +317,7 @@ class ClusteringHelper {
 
   updatePoints(double zoom) async {
     assert(() {
-      print("update single points");
+      // print("update single points");
       return true;
     }());
 
@@ -352,7 +352,7 @@ class ClusteringHelper {
       updateMarkers(markers);
     } catch (ex) {
       assert(() {
-        print(ex.toString());
+        // print(ex.toString());
         return true;
       }());
     }

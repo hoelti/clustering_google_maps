@@ -16,7 +16,7 @@ class DBHelper {
     String whereClause = "",
   }) async {
     assert(() {
-      print("--------- START QUERY AGGREGATION");
+      // print("--------- START QUERY AGGREGATION");
       return true;
     }());
     try {
@@ -39,7 +39,7 @@ class DBHelper {
           'SELECT COUNT(*) as n_marker, AVG($dbLatColumn) as lat, AVG($dbLongColumn) as long '
           'FROM $dbTable $whereClause GROUP BY substr($dbGeohashColumn,1,$level);';
       assert(() {
-        print(query);
+        // print(query);
         return true;
       }());
       var result = await database.rawQuery(query);
@@ -48,21 +48,21 @@ class DBHelper {
 
       for (Map<String, dynamic> item in result) {
         assert(() {
-          print(item);
+          // print(item);
           return true;
         }());
         var p = new AggregatedPoints.fromMap(item, dbLatColumn, dbLongColumn);
         aggregatedPoints.add(p);
       }
       assert(() {
-        print("--------- COMPLETE QUERY AGGREGATION");
+        // print("--------- COMPLETE QUERY AGGREGATION");
         return true;
       }());
       return aggregatedPoints;
     } catch (e) {
       assert(() {
-        print(e.toString());
-        print("--------- COMPLETE QUERY AGGREGATION WITH ERROR");
+        // print(e.toString());
+        // print("--------- COMPLETE QUERY AGGREGATION WITH ERROR");
         return true;
       }());
       return List<AggregatedPoints>();
@@ -85,14 +85,14 @@ class DBHelper {
         points.add(p);
       }
       assert(() {
-        print("--------- COMPLETE QUERY");
+        // print("--------- COMPLETE QUERY");
         return true;
       }());
 
       return points;
     } catch (e) {
       assert(() {
-        print(e.toString());
+        // print(e.toString());
         return true;
       }());
       return List<LatLngAndGeohash>();
@@ -102,7 +102,7 @@ class DBHelper {
   static String buildBoundingBoxClause(
       LatLngBounds latLngBounds, String dbTable, String dbLat, String dbLong) {
     assert(() {
-      print(latLngBounds.toString());
+      // print(latLngBounds.toString());
       return true;
     }());
     final double leftTopLatitude = latLngBounds.northeast.latitude;
