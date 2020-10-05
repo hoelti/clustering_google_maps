@@ -12,3 +12,4 @@ ios/.symlinks
 
 #api key files
 **/example/android/app/src/main/res/values/strings.xml
+example/.flutter-plugins-dependencies
